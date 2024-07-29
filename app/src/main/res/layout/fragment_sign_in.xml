@@ -56,6 +56,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#8d99ae"
+                android:enabled="false"
                 android:paddingVertical="10dp"
                 android:text="Continue"
                 android:textColor="#FFFFFF"

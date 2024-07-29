@@ -51,6 +51,7 @@ class SignInFragment : Fragment() {
                             R.color.gray_blue
                         )
                     )
+                    binding.btnContinue.isEnabled = true
                 }
             }
 
@@ -65,11 +66,10 @@ class SignInFragment : Fragment() {
         val number = binding.userNumber.text.toString()
         if (number.isEmpty() || number.length != 10) {
             Util.showToast(requireContext(), "Please enter a valid number...")
-        }
-        else {
-            val bundle=Bundle()
-            bundle.putString("number",number)
-            findNavController().navigate(R.id.action_signInFragment_to_OTPFragment,bundle)
+        } else {
+            val bundle = Bundle()
+            bundle.putString("number", number)
+            findNavController().navigate(R.id.action_signInFragment_to_OTPFragment, bundle)
 
         }
     }
