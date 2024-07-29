@@ -39,9 +39,11 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/phone"
                     android:drawablePadding="10dp"
+                    android:drawableTint="@color/yellow"
                     android:hint="Enter Mobile NUmber"
                     android:inputType="number"
-                    android:maxLength="10" />
+                    android:maxLength="10"
+                    android:textColorHint="@color/yellow" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
