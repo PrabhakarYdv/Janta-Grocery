@@ -63,12 +63,12 @@ class OTPFragment : Fragment() {
 
                 override fun afterTextChanged(value: Editable?) {
                     if (value?.length == 1) {
-                        if (index == editTexts.size - 1) {
+                        if (index <= editTexts.size - 2) {
                             editTexts[index + 1].requestFocus()
-                        } else if (value?.length == 0) {
-                            if (index > 0) {
-                                editTexts[index - 1].requestFocus()
-                            }
+                        }
+                    } else if (value?.length == 0) {
+                        if (index > 0) {
+                            editTexts[index - 1].requestFocus()
                         }
                     }
                 }

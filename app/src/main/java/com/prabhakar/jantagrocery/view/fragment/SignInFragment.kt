@@ -23,7 +23,9 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(layoutInflater)
 
         userNumberValidation()
-        onClickBtnContinue()
+        binding.btnContinue.setOnClickListener {
+            onClickBtnContinue()
+        }
         setStatusBarColor()
         return binding.root
 
@@ -44,6 +46,7 @@ class SignInFragment : Fragment() {
                             R.color.yellow
                         )
                     )
+                    binding.btnContinue.isEnabled = true
                 } else {
                     binding.btnContinue.setBackgroundColor(
                         ContextCompat.getColor(
@@ -51,7 +54,7 @@ class SignInFragment : Fragment() {
                             R.color.gray_blue
                         )
                     )
-                    binding.btnContinue.isEnabled = true
+                    binding.btnContinue.isEnabled = false
                 }
             }
 

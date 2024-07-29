@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -200,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="number"
-                app:counterMaxLength="1" />
+                android:maxLength="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

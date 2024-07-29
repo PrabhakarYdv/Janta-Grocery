@@ -13,8 +13,7 @@
         <action
             android:id="@+id/action_signInFragment_to_OTPFragment"
             app:destination="@id/OTPFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/signInFragment" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
@@ -23,6 +22,8 @@
         tools:layout="@layout/fragment_o_t_p">
         <action
             android:id="@+id/action_OTPFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
