@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_OTPFragment"
-            app:destination="@id/OTPFragment" />
+            app:destination="@id/OTPFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
