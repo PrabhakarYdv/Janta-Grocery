@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.prabhakar.jantagrocery.R
 import com.prabhakar.jantagrocery.databinding.FragmentOTPBinding
 
 class OTPFragment : Fragment() {
@@ -21,8 +23,16 @@ class OTPFragment : Fragment() {
 
         getUserNUmber()
         customizeEnterOTP()
+
+        goBack()
         return binding.root
 
+    }
+
+    private fun goBack() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_OTPFragment_to_signInFragment)
+        }
     }
 
     private fun getUserNUmber() {
