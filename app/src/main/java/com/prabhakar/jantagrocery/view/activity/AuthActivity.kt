@@ -1,4 +1,4 @@
-package com.prabhakar.jantagrocery
+package com.prabhakar.jantagrocery.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
