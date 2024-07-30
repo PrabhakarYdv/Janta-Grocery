@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.prabhakar.jantagrocery.R
-import com.prabhakar.jantagrocery.Util
+import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
@@ -68,7 +68,7 @@ class SignInFragment : Fragment() {
     private fun onClickBtnContinue() {
         val number = binding.userNumber.text.toString()
         if (number.isEmpty() || number.length != 10) {
-            Util.showToast(requireContext(), "Please enter a valid number...")
+            Utils.showToast(requireContext(), "Please enter a valid number...")
         } else {
             val bundle = Bundle()
             bundle.putString("number", number)

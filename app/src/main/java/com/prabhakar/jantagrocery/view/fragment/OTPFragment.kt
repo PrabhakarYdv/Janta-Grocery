@@ -7,13 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.prabhakar.jantagrocery.R
+import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentOTPBinding
+import com.prabhakar.jantagrocery.viewmodels.AuthViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class OTPFragment : Fragment() {
     private lateinit var binding: FragmentOTPBinding
     private lateinit var userNumber: String
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,8 +30,8 @@ class OTPFragment : Fragment() {
 
         getUserNUmber()
         customizeEnterOTP()
-
         goBack()
+        sendOTP()
         return binding.root
 
     }
@@ -77,4 +84,19 @@ class OTPFragment : Fragment() {
         }
     }
 
+    private fun sendOTP() {
+        Utils.showDialog(requireContext(), "Sending OTP...")
+        authViewModel.apply {
+            sendOTP(userNumber, requireActivity())
+            lifecycleScope.launch {
+                exposeOtp.collect{
+                    if (it){
+                       Utils.hideDialog()
+                       Utils.showToast(requireContext(),"OTP has been sent")
+                    }
+                }
+            }
+        }
+
+    }
 }
