@@ -1,9 +1,11 @@
 package com.prabhakar.jantagrocery
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.prabhakar.jantagrocery.databinding.ProgressBarBinding
 
@@ -39,5 +41,12 @@ object Utils {
 
     fun getUId(): String? {
         return FirebaseAuth.getInstance().currentUser?.uid
+    }
+
+    fun setStatusBarColor(activity: Activity) {
+        activity?.window?.apply {
+            val color = ContextCompat.getColor(activity, R.color.yellow)
+            statusBarColor = color
+        }
     }
 }

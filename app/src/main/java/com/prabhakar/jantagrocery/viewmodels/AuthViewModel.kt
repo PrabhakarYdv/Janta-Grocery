@@ -18,7 +18,14 @@ class AuthViewModel : ViewModel() {
     val exposeOtp = _otpSent
     private val _isVerifySuccess = MutableStateFlow(false)
     val exposeVerifyStatus = _isVerifySuccess
+    private val _isCurrentUser = MutableStateFlow(false)
+    val exposeCurrentUserStatus = _isCurrentUser
 
+    init {
+        Utils.getFirebaseAuthInstance().currentUser?.let {
+            _isCurrentUser.value = true
+        }
+    }
 
     fun sendOTP(userNumber: String, activity: Activity) {
         val callBacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -49,16 +56,16 @@ class AuthViewModel : ViewModel() {
         PhoneAuthProvider.verifyPhoneNumber(option)
     }
 
-    fun signWithPhoneAuth(userNumber: String, otp: String, userModel: UserModel) {
+    fun signWithPhoneAuth(userNumber: String, otp: String, userModel: UserModel?) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(), otp)
 
         Utils.getFirebaseAuthInstance().signInWithCredential(credential)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    _isVerifySuccess.value = true
                     FirebaseDatabase.getInstance()
-                        .getReference("AllUsers").child("User").child(userModel.uId)
+                        .getReference("AllUsers").child("User").child(userModel?.uId.toString())
                         .setValue(userModel)
+                    _isVerifySuccess.value = true
                 } else {
                     _isVerifySuccess.value = false
                 }

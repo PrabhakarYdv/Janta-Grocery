@@ -26,7 +26,8 @@ class SignInFragment : Fragment() {
         binding.btnContinue.setOnClickListener {
             onClickBtnContinue()
         }
-        setStatusBarColor()
+        
+        Utils.setStatusBarColor(requireActivity())
         return binding.root
 
     }
@@ -77,12 +78,5 @@ class SignInFragment : Fragment() {
         }
     }
 
-
-    private fun setStatusBarColor() {
-        activity?.window?.apply {
-            val color = ContextCompat.getColor(requireContext(), R.color.yellow)
-            statusBarColor = color
-        }
-    }
 
 }

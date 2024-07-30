@@ -4,11 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.prabhakar.jantagrocery.R
+import com.prabhakar.jantagrocery.viewmodels.AuthViewModel
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
+    private val viewModel: AuthViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -17,8 +23,17 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         Handler().postDelayed({
-            startActivity(Intent(this, AuthActivity::class.java))
-            finish()
+            lifecycleScope.launch {
+                viewModel.exposeCurrentUserStatus.collect {
+                    if (it) {
+                        startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+                        finish()
+                    } else {
+                        startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
+                        finish()
+                    }
+                }
+            }
         }, 2000)
     }
 }

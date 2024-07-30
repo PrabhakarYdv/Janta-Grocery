@@ -1,5 +1,6 @@
 package com.prabhakar.jantagrocery.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +15,7 @@ import com.prabhakar.jantagrocery.R
 import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentOTPBinding
 import com.prabhakar.jantagrocery.model.UserModel
+import com.prabhakar.jantagrocery.view.activity.HomeActivity
 import com.prabhakar.jantagrocery.viewmodels.AuthViewModel
 import kotlinx.coroutines.launch
 
@@ -134,14 +136,14 @@ class OTPFragment : Fragment() {
             UserModel(it, userNumber, "")
         }
 
-        if (userModel != null) {
-            authViewModel.signWithPhoneAuth(userNumber, otp, userModel)
-        }
+        authViewModel.signWithPhoneAuth(userNumber, otp, userModel)
         lifecycleScope.launch {
             authViewModel.exposeVerifyStatus.collect {
                 if (it) {
                     Utils.hideDialog()
                     Utils.showToast(requireContext(), "Signing Complete !")
+                    startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                    requireActivity().finish()
                 } else {
                     Utils.hideDialog()
                     Utils.showToast(requireContext(), "Something went wrong !")
