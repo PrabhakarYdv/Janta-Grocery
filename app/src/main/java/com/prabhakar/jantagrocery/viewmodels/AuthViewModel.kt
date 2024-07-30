@@ -14,6 +14,9 @@ class AuthViewModel : ViewModel() {
     private val _verificationId = MutableStateFlow<String?>(null)
     private val _otpSent = MutableStateFlow(false)
     val exposeOtp = _otpSent
+    private val _isVerifySuccess = MutableStateFlow(false)
+    val exposeVerifyStatus = _isVerifySuccess
+
 
     fun sendOTP(userNumber: String, activity: Activity) {
         val callBacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -37,10 +40,23 @@ class AuthViewModel : ViewModel() {
 
         val option = PhoneAuthOptions.newBuilder(Utils.getFirebaseAuthInstance())
             .setPhoneNumber("+91$userNumber")
-            .setTimeout(60L,TimeUnit.SECONDS)
+            .setTimeout(60L, TimeUnit.SECONDS)
             .setActivity(activity)
             .setCallbacks(callBacks)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(option)
     }
+
+    fun signWithPhoneAuth(userNumber: String,otp: String ) {
+        val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(), otp)
+        Utils.getFirebaseAuthInstance().signInWithCredential(credential)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    _isVerifySuccess.value = true
+                } else {
+                    _isVerifySuccess.value = false
+                }
+            }
+    }
+
 }

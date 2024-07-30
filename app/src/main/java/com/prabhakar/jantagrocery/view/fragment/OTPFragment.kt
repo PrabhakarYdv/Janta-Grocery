@@ -14,7 +14,6 @@ import com.prabhakar.jantagrocery.R
 import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentOTPBinding
 import com.prabhakar.jantagrocery.viewmodels.AuthViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class OTPFragment : Fragment() {
@@ -32,6 +31,7 @@ class OTPFragment : Fragment() {
         customizeEnterOTP()
         goBack()
         sendOTP()
+        btnLoginFunctionality()
         return binding.root
 
     }
@@ -89,14 +89,56 @@ class OTPFragment : Fragment() {
         authViewModel.apply {
             sendOTP(userNumber, requireActivity())
             lifecycleScope.launch {
-                exposeOtp.collect{
-                    if (it){
-                       Utils.hideDialog()
-                       Utils.showToast(requireContext(),"OTP has been sent")
+                exposeOtp.collect {
+                    if (it) {
+                        Utils.hideDialog()
+                        Utils.showToast(requireContext(), "OTP has been sent")
                     }
                 }
             }
         }
 
+    }
+
+    private fun btnLoginFunctionality() {
+        val otpS = arrayOf(
+            binding.otp1,
+            binding.otp2,
+            binding.otp3,
+            binding.otp4,
+            binding.otp5,
+            binding.otp6
+        )
+        binding.btnLogin.setOnClickListener {
+            Utils.showDialog(requireContext(), "Signing You...")
+        }
+
+        val otp = otpS.joinToString("") {
+            it.text.toString()
+        }
+        if (otp.length < otpS.size) {
+            Utils.showToast(requireContext(), "Enter a valid OTP")
+        } else {
+            otpS.forEach {
+                it.text?.clear()
+                it.clearFocus()
+            }
+            verifyOTP(otp)
+        }
+    }
+
+    private fun verifyOTP(otp: String) {
+        authViewModel.signWithPhoneAuth(userNumber, otp)
+        lifecycleScope.launch {
+            authViewModel.exposeVerifyStatus.collect {
+                if (it) {
+                    Utils.hideDialog()
+                    Utils.showToast(requireContext(), "Signing Complete !")
+                } else {
+                    Utils.hideDialog()
+                    Utils.showToast(requireContext(), "Something went wrong !")
+                }
+            }
+        }
     }
 }
