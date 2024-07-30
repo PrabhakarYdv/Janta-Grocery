@@ -8,6 +8,7 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.prabhakar.jantagrocery.Utils
 import kotlinx.coroutines.flow.MutableStateFlow
+import java.util.concurrent.TimeUnit
 
 class AuthViewModel : ViewModel() {
     private val _verificationId = MutableStateFlow<String?>(null)
@@ -35,7 +36,8 @@ class AuthViewModel : ViewModel() {
         }
 
         val option = PhoneAuthOptions.newBuilder(Utils.getFirebaseAuthInstance())
-            .setPhoneNumber("+91 $userNumber")
+            .setPhoneNumber("+91$userNumber")
+            .setTimeout(60L,TimeUnit.SECONDS)
             .setActivity(activity)
             .setCallbacks(callBacks)
             .build()
