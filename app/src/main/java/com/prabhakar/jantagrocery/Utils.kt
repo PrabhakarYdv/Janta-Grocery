@@ -3,6 +3,7 @@ package com.prabhakar.jantagrocery
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -43,9 +44,9 @@ object Utils {
         return FirebaseAuth.getInstance().currentUser?.uid
     }
 
-    fun setStatusBarColor(activity: Activity) {
+    fun setStatusBarColor(activity: Activity,color: Int) {
         activity?.window?.apply {
-            val color = ContextCompat.getColor(activity, R.color.yellow)
+            val color = ContextCompat.getColor(activity, color)
             statusBarColor = color
         }
     }

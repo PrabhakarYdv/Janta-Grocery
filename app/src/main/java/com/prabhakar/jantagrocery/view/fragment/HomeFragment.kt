@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.prabhakar.jantagrocery.R
 import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentHomeBinding
 
@@ -18,8 +19,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        Utils.setStatusBarColor(requireActivity())
-
+        Utils.setStatusBarColor(requireActivity(), R.color.orange)
         return binding.root
     }
 

@@ -27,7 +27,7 @@ class SignInFragment : Fragment() {
             onClickBtnContinue()
         }
         
-        Utils.setStatusBarColor(requireActivity())
+        Utils.setStatusBarColor(requireActivity(),R.color.yellow)
         return binding.root
 
     }
