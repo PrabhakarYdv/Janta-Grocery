@@ -127,7 +127,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4" />
+                app:spanCount="4"
+                tools:listitem="@layout/category_layout" />
 
         </LinearLayout>
 
