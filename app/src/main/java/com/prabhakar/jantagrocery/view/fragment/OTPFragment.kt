@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.prabhakar.jantagrocery.R
 import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.databinding.FragmentOTPBinding
+import com.prabhakar.jantagrocery.model.UserModel
 import com.prabhakar.jantagrocery.viewmodels.AuthViewModel
 import kotlinx.coroutines.launch
 
@@ -128,7 +129,9 @@ class OTPFragment : Fragment() {
     }
 
     private fun verifyOTP(otp: String) {
-        authViewModel.signWithPhoneAuth(userNumber, otp)
+        val userModel = UserModel(Utils.getUId(), userNumber, "")
+
+        authViewModel.signWithPhoneAuth(userNumber, otp, userModel)
         lifecycleScope.launch {
             authViewModel.exposeVerifyStatus.collect {
                 if (it) {
