@@ -130,7 +130,9 @@ class OTPFragment : Fragment() {
     }
 
     private fun verifyOTP(otp: String) {
-        val userModel = Utils.getUId()?.let { UserModel(it, userNumber, "") }
+        val userModel = Utils.getUId()?.let {
+            UserModel(it, userNumber, "")
+        }
 
         if (userModel != null) {
             authViewModel.signWithPhoneAuth(userNumber, otp, userModel)

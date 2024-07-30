@@ -51,6 +51,7 @@ class AuthViewModel : ViewModel() {
 
     fun signWithPhoneAuth(userNumber: String, otp: String, userModel: UserModel) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(), otp)
+
         Utils.getFirebaseAuthInstance().signInWithCredential(credential)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
