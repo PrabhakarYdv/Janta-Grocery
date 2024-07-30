@@ -37,7 +37,7 @@ object Utils {
         return firebaseAuthInstance!!
     }
 
-    fun getUId(): String {
-        return FirebaseAuth.getInstance().currentUser!!.uid
+    fun getUId(): String? {
+        return FirebaseAuth.getInstance().currentUser?.uid
     }
 }

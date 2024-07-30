@@ -112,26 +112,29 @@ class OTPFragment : Fragment() {
         )
         binding.btnLogin.setOnClickListener {
             Utils.showDialog(requireContext(), "Signing You...")
-        }
 
-        val otp = otpS.joinToString("") {
-            it.text.toString()
-        }
-        if (otp.length < otpS.size) {
-            Utils.showToast(requireContext(), "Enter a valid OTP")
-        } else {
-            otpS.forEach {
-                it.text?.clear()
-                it.clearFocus()
+
+            val otp = otpS.joinToString("") {
+                it.text.toString()
             }
-            verifyOTP(otp)
+            if (otp.length < otpS.size) {
+                Utils.showToast(requireContext(), "Enter a valid OTP")
+            } else {
+                otpS.forEach {
+                    it.text?.clear()
+                    it.clearFocus()
+                }
+                verifyOTP(otp)
+            }
         }
     }
 
     private fun verifyOTP(otp: String) {
-        val userModel = UserModel(Utils.getUId(), userNumber, "")
+        val userModel = Utils.getUId()?.let { UserModel(it, userNumber, "") }
 
-        authViewModel.signWithPhoneAuth(userNumber, otp, userModel)
+        if (userModel != null) {
+            authViewModel.signWithPhoneAuth(userNumber, otp, userModel)
+        }
         lifecycleScope.launch {
             authViewModel.exposeVerifyStatus.collect {
                 if (it) {
