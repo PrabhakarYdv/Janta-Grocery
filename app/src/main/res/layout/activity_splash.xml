@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".view.activity.SplashActivity">
@@ -25,9 +26,9 @@
             android:layout_marginHorizontal="1dp"
             android:background="@drawable/round_bg"
             android:fontFamily="@font/amarante"
-            android:textColor="#FFFFFF"
             android:padding="40dp"
             android:text="JANTA"
+            android:textColor="#FFFFFF"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -36,8 +37,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/amarante"
             android:text="GROCERY"
-            android:textSize="35dp"
             android:textColor="@color/orange"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
     </LinearLayout>
