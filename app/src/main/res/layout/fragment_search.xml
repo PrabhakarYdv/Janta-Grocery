@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    tools:context=".view.fragment.SearchFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/searchBar"
@@ -55,6 +55,20 @@
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <TextView
+        android:id="@+id/nothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nothing to show"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerView"
