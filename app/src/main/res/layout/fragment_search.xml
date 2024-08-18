@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/back_icon"
             android:drawablePadding="10dp"
             android:hint="Search"
             android:padding="10dp"
@@ -34,6 +33,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.facebook.shimmer.ShimmerFrameLayout
+        android:visibility="gone"
         android:id="@+id/shimmerEffect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

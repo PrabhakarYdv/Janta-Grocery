@@ -2,16 +2,19 @@ package com.prabhakar.jantagrocery.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.models.SlideModel
+import com.prabhakar.jantagrocery.FilterProduct
 import com.prabhakar.jantagrocery.databinding.ProductItemLayoutBinding
 import com.prabhakar.jantagrocery.model.ProductModel
 import com.prabhakar.jantagrocery.viewholders.ProductViewHolder
 
 class ProductAdapter() :
-    RecyclerView.Adapter<ProductViewHolder>() {
+    RecyclerView.Adapter<ProductViewHolder>(), Filterable {
     val diffUtil = object : DiffUtil.ItemCallback<ProductModel>() {
         override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
             return oldItem.productRandomId == newItem.productRandomId
@@ -51,5 +54,15 @@ class ProductAdapter() :
 
     override fun getItemCount(): Int {
         return differ.currentList.size
+    }
+
+    private val filter: FilterProduct? = null
+    var originalList = ArrayList<ProductModel>()
+
+    override fun getFilter(): Filter {
+        if (filter == null) {
+            return FilterProduct(this, originalList)
+        }
+        return filter
     }
 }

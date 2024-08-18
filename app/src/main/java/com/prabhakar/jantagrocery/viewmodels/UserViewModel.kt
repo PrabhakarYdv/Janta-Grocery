@@ -1,10 +1,12 @@
 package com.prabhakar.jantagrocery.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.prabhakar.jantagrocery.Utils
 import com.prabhakar.jantagrocery.model.ProductModel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +26,7 @@ class UserViewModel : ViewModel() {
             }
 
             override fun onCancelled(error: DatabaseError) {
+               Log.d("Fetch","${error.message}")
             }
 
         }
